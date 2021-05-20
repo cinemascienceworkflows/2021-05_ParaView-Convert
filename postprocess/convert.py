@@ -6,10 +6,19 @@ import glob
 import os
 import shutil
 import re
+import sys
 
-indir   = "/ccs/home/dhrogers/data/wavelet_extracts"
-cdbbase = os.path.basename(indir) 
-outdir  = "/gpfs/alpine/scratch/dhrogers/csc420"
+indir   = ""
+outdir  = ""
+cddbase = ""
+
+if (len(sys.argv) == 3):
+    indir  = sys.argv[1]
+    outdir = sys.argv[2]
+    cdbbase = os.path.basename(indir) 
+else:
+    print("ERROR: must provide indir and outdir")
+
 os.mkdir(os.path.join(outdir, cdbbase))
 
 reader = vtkStructuredPointsReader()
